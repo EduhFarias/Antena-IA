@@ -9,12 +9,4 @@ public class Util {
                 "&theta3=" + Integer.toString(angles.get(5));
     }
 
-    static void getIn(ArrayList<Integer> angles){
-        Scanner input = new Scanner(System.in);
-        System.out.println("Input: Phi Theta Phi Theta Phi Theta");
-
-        for(int i = 0; i < 6; i++){
-            angles.add(input.nextInt());
-        }
-    }
 }
