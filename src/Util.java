@@ -10,7 +10,14 @@ public class Util {
                 "&theta2=" + Integer.toString(angles.get(3)) + "&phi3=" + Integer.toString(angles.get(4)) +
                 "&theta3=" + Integer.toString(angles.get(5));
     }
-    //Função ainda teste
+
+    public static void showBest(Subject subject){
+        System.out.println("Ganho: " + subject.fitness + "\nPhi 1: " + subject.angles.get(0) +
+                "\nTheta 1: " + subject.angles.get(1) + "\nPhi 2: " + subject.angles.get(2) +
+                "\nTheta 2: " + subject.angles.get(3) + "\nPhi 3: " + subject.angles.get(4) +
+                "\nTheta 3: " + subject.angles.get(5));
+    }
+
     public static double accessUrl(String url){
 
         HttpURLConnection connection = null;
@@ -36,12 +43,10 @@ public class Util {
                 stringBuilder.append(line + '\n');
             }
 
-            System.out.println(stringBuilder.toString());
+            //System.out.println(stringBuilder.toString()); //test
 
             String aux = stringBuilder.toString().substring(0,16);
             fitness = Double.parseDouble(aux);
-
-            //System.out.println(fitness);
 
             connection.disconnect();
         }catch (MalformedURLException e){
