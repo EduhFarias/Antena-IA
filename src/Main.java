@@ -1,6 +1,4 @@
 import java.util.*;
-import java.net.*;
-import java.io.*;
 
 public class Main {
     public static void main(String[] args){
@@ -15,6 +13,13 @@ public class Main {
             System.out.println(Util.setUrl(current.angles));
         }
 
+    }
+
+    public static void fitness(ArrayList<Subject> population){
+        for(Subject current : population){
+            //double fitness -> recebe o valor da função accessUrl
+            Util.accessUrl(Util.setUrl(current.angles));
+        }
     }
 
 }
