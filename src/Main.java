@@ -4,16 +4,16 @@ import java.io.*;
 
 public class Main {
     public static void main(String[] args){
+        ArrayList<Subject> population = new ArrayList<>();
 
-        ArrayList<Integer> angles = new ArrayList<>();
-        Util.getIn(angles);
+        Scanner input = new Scanner(System.in);
 
-        Subject newSubject = new Subject(angles);
+        System.out.println("Population: (int)");
+        Subject.generatePopulation(population, input.nextInt());
 
-        String out = Util.setUrl(newSubject.getAngles());
-
-        System.out.println(out);
-
+        for(Subject current : population){
+            System.out.println(Util.setUrl(current.angles));
+        }
 
     }
 
