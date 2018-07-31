@@ -9,17 +9,26 @@ public class Main {
         System.out.println("Population: (int)");
         Subject.generatePopulation(population, input.nextInt());
 
-        for(Subject current : population){
-            System.out.println(Util.setUrl(current.angles));
-        }
-
         fitness(population);
     }
 
     public static void fitness(ArrayList<Subject> population){
         for(Subject current : population){
             current.fitness = Util.accessUrl(Util.setUrl(current.angles));
+            //System.out.println(current.fitness); //test
         }
+    }
+
+    public static void selection(){
+
+    }
+
+    public static void crossover(){
+
+    }
+
+    public static void mutation(){
+        
     }
 
 }
