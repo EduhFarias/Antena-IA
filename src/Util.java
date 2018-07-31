@@ -14,8 +14,8 @@ public class Util {
     public static double accessUrl(String url){
 
         HttpURLConnection connection = null;
-        BufferedReader rd = null;
-        StringBuilder sb = null;
+        BufferedReader reader = null;
+        StringBuilder stringBuilder = null;
         String line = null;
         URL serverAddress = null;
         double fitness = 0;
@@ -29,19 +29,19 @@ public class Util {
 
             connection.connect();
 
-            rd = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-            sb = new StringBuilder();
+            reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+            stringBuilder = new StringBuilder();
 
-            while((line = rd.readLine()) != null){
-                sb.append(line + '\n');
+            while((line = reader.readLine()) != null){
+                stringBuilder.append(line + '\n');
             }
-            //System.out.println(sb.length());
-            //System.out.println(sb.toString());
 
-            String aux = sb.toString().substring(0,19);
-            aux = aux.replace('p','\0');
+            System.out.println(stringBuilder.toString());
+
+            String aux = stringBuilder.toString().substring(0,16);
             fitness = Double.parseDouble(aux);
-            System.out.println(fitness);
+
+            //System.out.println(fitness);
 
             connection.disconnect();
         }catch (MalformedURLException e){
