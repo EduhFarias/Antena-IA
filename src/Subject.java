@@ -9,7 +9,7 @@ public class Subject {
         this.angles = angles;
     }
 
-    static Subject generateSubject(){
+    public static Subject generateSubject(){
         ArrayList<Integer> angles = new ArrayList<>();
         Random generator = new Random();
 
@@ -19,7 +19,7 @@ public class Subject {
         return new Subject(angles);
     }
 
-    static void generatePopulation(ArrayList<Subject> population, int n){
+    public static void generatePopulation(ArrayList<Subject> population, int n){
         for(int i = 0; i < n; i++){
             population.add(generateSubject());
         }
