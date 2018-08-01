@@ -13,8 +13,6 @@ public class Main {
         for(int i = 0; i < input.nextInt(); i++){
             run(population);
         }
-        //Collections.sort(population, new FitnessComparator());
-        //population.sort(new FitnessComparator());
 
     }
 
@@ -31,11 +29,15 @@ public class Main {
     public static void selection(ArrayList<Subject> population){
         Collections.shuffle(population);
         ArrayList<Subject> children = new ArrayList<>();
+        int size = population.size();
+
         for(int i = 0; i < population.size(); i+= 2){
             Object[] newObject = crossover(population);
             children.add((Subject) newObject[0]);
             children.add((Subject) newObject[1]);
         }
+        population.addAll(children);
+        survival(population, size);
     }
 
     public static Object[] crossover(Subject parent1, Subject parent2){
@@ -67,6 +69,15 @@ public class Main {
         }
         fitness(subject);
         return subject;
+    }
+
+    public static void survival(ArrayList<Subject> population, int size){
+        population.sort(new FitnessComparator());
+        if(population.size() > size){
+            for(int i = size; i < population.size(); i++){
+                population.remove(i);
+            }
+        }
     }
 
 }
