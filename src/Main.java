@@ -29,10 +29,17 @@ public class Main {
     public static void selection(ArrayList<Subject> population){
         Collections.shuffle(population);
         ArrayList<Subject> children = new ArrayList<>();
+        Subject[] parents = new Subject[1]; 
         int size = population.size();
 
-        for(int i = 0; i < population.size(); i+= 2){
-            Object[] newObject = crossover(population);
+        for(int i = 0; i < (population.size() / 2); i+= 2){
+            for(int j = 0; j < 2;){
+                if(){
+                    parents[j] = population.get(i);
+                    j++;
+                }
+            }
+            Object[] newObject = crossover(parents[0], parents[1]);
             children.add((Subject) newObject[0]);
             children.add((Subject) newObject[1]);
         }
@@ -42,7 +49,7 @@ public class Main {
 
     public static Object[] crossover(Subject parent1, Subject parent2){
         Random generate = new Random();
-        Subject child1 = null, child2 = null;
+        Subject child1 = new Subject(new ArrayList<>()), child2 = new Subject(new ArrayList<>());
         Object[] newObject = new Objects[1];
 
         for(int i = 0; i < 6; i++){
