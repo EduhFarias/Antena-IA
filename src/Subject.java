@@ -2,7 +2,6 @@ import java.util.*;
 
 public class Subject {
     public ArrayList<Integer> angles = new ArrayList<>();
-    public int generation;
     public double fitness;
 
     public Subject(ArrayList<Integer> angles) {
@@ -14,9 +13,11 @@ public class Subject {
         Random generator = new Random();
 
         for(int i = 0; i < 6; i++){
-            angles.add(generator.nextInt(360) + 1);
+            angles.add(generator.nextInt(361));
         }
-        return new Subject(angles);
+        Subject newSubject = new Subject(angles);
+        Main.fitness(newSubject);
+        return newSubject;
     }
 
     public static void generatePopulation(ArrayList<Subject> population, int n){
