@@ -45,7 +45,7 @@ public class Util {
 
             //System.out.println(stringBuilder.toString()); //test
 
-            String aux = stringBuilder.toString().substring(0,16);
+            String aux = stringBuilder.toString().substring(0,12);
             fitness = Double.parseDouble(aux);
 
             connection.disconnect();
