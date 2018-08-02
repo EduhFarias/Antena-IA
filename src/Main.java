@@ -8,37 +8,33 @@ public class Main {
 
         System.out.println("Population: (int)");
         Subject.generatePopulation(population, input.nextInt());
-        System.out.println("Processes: (int)");
-
+        Subject.getSubject(population);
+        /*System.out.println("Processes: (int)");
         for(int i = 0; i < input.nextInt(); i++){
-            run(population);
-        }
+            AG(population);
+        }*/
 
     }
 
-    public static void run(ArrayList<Subject> population){
-
+    public static void AG(ArrayList<Subject> population){
+        System.out.println(population.get(0));
     }
 
     public static void fitness(Subject subject){
-            subject.fitness = Util.accessUrl(Util.setUrl(subject.angles));
-            //System.out.println(subject.fitness); //test
+        subject.fitness = Util.accessUrl(Util.setUrl(subject.angles));
+        //System.out.println(subject.fitness); //test
 
     }
 
     public static void selection(ArrayList<Subject> population){
         Collections.shuffle(population);
         ArrayList<Subject> children = new ArrayList<>();
-        Subject[] parents = new Subject[1]; 
+        Subject[] parents = new Subject[1];
         int size = population.size();
 
-        for(int i = 0; i < (population.size() / 2); i+= 2){
-            for(int j = 0; j < 2;){
-                if(){
-                    parents[j] = population.get(i);
-                    j++;
-                }
-            }
+        for(int i = 0; i < size; i+= 2){
+            parents[0] = Subject.getSubject(population);
+            parents[1] = Subject.getSubject(population);
             Object[] newObject = crossover(parents[0], parents[1]);
             children.add((Subject) newObject[0]);
             children.add((Subject) newObject[1]);
