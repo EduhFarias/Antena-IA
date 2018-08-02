@@ -25,4 +25,17 @@ public class Subject {
             population.add(generateSubject());
         }
     }
+
+    public static Subject getSubject(ArrayList<Subject> population){
+        Subject newSubject = null;
+        Random random = new Random();
+        double total = 0;
+        for(Subject current : population){
+            total += current.fitness;
+            newSubject = current;
+        }
+        System.out.printf("Total-> %f, Ultimo valor checado-> %f, Porcentagem do valor-> %f ", total, newSubject.fitness,
+                (newSubject.fitness/total)*100);
+        return newSubject;
+    }
 }
