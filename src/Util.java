@@ -32,7 +32,7 @@ public class Util {
             connection = (HttpURLConnection)serverAddress.openConnection();
             connection.setRequestMethod("GET");
             connection.setDoOutput(true);
-            connection.setReadTimeout(10000);
+            connection.setReadTimeout(100000);
 
             connection.connect();
 
