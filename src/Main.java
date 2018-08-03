@@ -8,16 +8,18 @@ public class Main {
 
         System.out.println("Population: (int)");
         Subject.generatePopulation(population, input.nextInt());
-        Subject.getSubject(population);
-        /*System.out.println("Processes: (int)");
-        for(int i = 0; i < input.nextInt(); i++){
-            AG(population);
-        }*/
 
+        System.out.println("Processes: (int)");
+        int processes = input.nextInt();
+        for(int i = 0; i < processes; i++){
+            AG(population);
+            population.sort(new FitnessComparator());
+        }
+        System.out.println(population.get(0).fitness);
     }
 
     public static void AG(ArrayList<Subject> population){
-        System.out.println(population.get(0));
+        selection(population);
     }
 
     public static void fitness(Subject subject){
@@ -29,24 +31,23 @@ public class Main {
     public static void selection(ArrayList<Subject> population){
         Collections.shuffle(population);
         ArrayList<Subject> children = new ArrayList<>();
-        Subject[] parents = new Subject[1];
+        Subject[] parents;
         int size = population.size();
 
         for(int i = 0; i < size; i+= 2){
-            parents[0] = Subject.getSubject(population);
-            parents[1] = Subject.getSubject(population);
-            Object[] newObject = crossover(parents[0], parents[1]);
-            children.add((Subject) newObject[0]);
-            children.add((Subject) newObject[1]);
+            parents = Subject.getSubject(population);
+            Subject[] newParents = crossover(parents[0], parents[1]);
+            children.add(newParents[0]);
+            children.add(newParents[1]);
         }
         population.addAll(children);
         survival(population, size);
     }
 
-    public static Object[] crossover(Subject parent1, Subject parent2){
+    public static Subject[] crossover(Subject parent1, Subject parent2){
         Random generate = new Random();
         Subject child1 = new Subject(new ArrayList<>()), child2 = new Subject(new ArrayList<>());
-        Object[] newObject = new Objects[1];
+        Subject[] newChildren = new Subject[2];
 
         for(int i = 0; i < 6; i++){
             if(generate.nextInt(2) > 0){
@@ -58,15 +59,15 @@ public class Main {
             }
         }
 
-        newObject[0] = mutation(child1);
-        newObject[1] = mutation(child2);
-        return newObject;
+        newChildren[0] = mutation(child1);
+        newChildren[1] = mutation(child2);
+        return newChildren;
     }
 
     public static Subject mutation(Subject subject){
         Random random = new Random();
         if(random.nextInt(11) > 3){
-            int i = random.nextInt(7);
+            int i = random.nextInt(6);
             int newAngle = random.nextInt(361);
             subject.angles.set(i, newAngle);
         }
@@ -76,10 +77,9 @@ public class Main {
 
     public static void survival(ArrayList<Subject> population, int size){
         population.sort(new FitnessComparator());
-        if(population.size() > size){
-            for(int i = size; i < population.size(); i++){
-                population.remove(i);
-            }
+
+        for(int i = population.size()-1; i > size; i--){
+            population.remove(i);
         }
     }
 
