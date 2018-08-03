@@ -26,16 +26,18 @@ public class Subject {
         }
     }
 
-    public static Subject getSubject(ArrayList<Subject> population){
-        Subject newSubject = null;
+    public static Subject[] getSubject(ArrayList<Subject> population){
+        population.sort(new FitnessComparator());
+        Subject[] newSubject = new Subject[2];
         Random random = new Random();
-        double total = 0;
-        for(Subject current : population){
-            total += current.fitness;
-            newSubject = current;
+
+        for(int i = 0; i < 2; i++){
+            if(random.nextInt(5) > 1){
+                newSubject[i] = population.get(random.nextInt(population.size()/3));
+            } else newSubject[i] = population.get(random.nextInt(population.size()));
         }
-        System.out.printf("Total-> %f, Ultimo valor checado-> %f, Porcentagem do valor-> %f ", total, newSubject.fitness,
-                (newSubject.fitness/total)*100);
+
         return newSubject;
     }
+
 }
