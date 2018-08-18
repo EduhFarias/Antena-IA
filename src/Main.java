@@ -15,7 +15,7 @@ public class Main {
             AG(population);
             population.sort(new FitnessComparator());
         }
-        System.out.println(population.get(0).fitness);
+        Util.showBest(population.get(0));
     }
 
     public static void AG(ArrayList<Subject> population){
